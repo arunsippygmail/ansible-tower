@@ -21,7 +21,7 @@
 
   - name: Call upload endpoints
     uri:
-      url: ""https://kyndryl.webhook.office.com/webhookb2/9d74ff56-fab0-4087-a164-69623ca7af2f@f260df36-bc43-424c-8f44-c85226657b01/IncomingWebhook/13ad2dd6a27e4372a0fd37a85618acaf/57f58fc4-ba8c-40c2-bc82-df255cff53da""
+      url: ""https://kyndryl.webhook.office.com/webhookb2/9d74ff56-fab0-4087-a164-69623ca7af2f@f260df36-bc43-424c-8f44-c85226657b01/IncomingWebhook/13ad2dd6a27e4372a0fd37a85618acaf/57f58fc4-ba8c-40c2-bc82-df255cff53da"
       method: "POST"
       body_format: "form-multipart"
       body:
