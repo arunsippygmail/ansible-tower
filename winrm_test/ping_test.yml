@@ -4,7 +4,7 @@
   tasks:
   - name: Host Ping Check
     failed_when: false
-    win_ping:
+    ping:
     register: var_ping
 
   - name: display ping results
