@@ -25,7 +25,6 @@
   gather_facts: no
   tasks:
   - name: Host Ping Check
-    failed_when: true
     win_ping:
     register: var_ping1
   - set_fact:
