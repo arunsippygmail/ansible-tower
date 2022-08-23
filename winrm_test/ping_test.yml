@@ -8,4 +8,5 @@
     register: var_ping
 
   - name: display ping results
-    var: var_ping
+    debug:
+      var: var_ping
