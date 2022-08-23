@@ -20,13 +20,14 @@
   - debug:
       var: down
 
-- hosts: all
+- name: Play No.2
+  hosts: all
   gather_facts: no
   tasks:
   - name: Host Ping Check
-    failed_when: false
+    failed_when: true
     win_ping:
-    register: var_ping
+    register: var_ping1
   - set_fact:
       down: "{{ ansible_play_hosts_all|difference(ansible_play_hosts) }}"
   - debug:
