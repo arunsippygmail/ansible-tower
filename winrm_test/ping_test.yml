@@ -10,3 +10,12 @@
   - name: display ping results
     debug:
       var: var_ping
+
+  - debug:
+      var: ansible_play_hosts_all
+  - debug:
+      var: ansible_play_hosts
+  - set_fact:
+      down: "{{ ansible_play_hosts_all|difference(ansible_play_hosts) }}"
+  - debug:
+      var: down
