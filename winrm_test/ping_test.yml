@@ -20,14 +20,13 @@
   - debug:
       var: down
 
-- name: Play No.2
-  hosts: all
-  gather_facts: no
-  tasks:
-  - name: Host Ping Check
-    win_ping:
-    register: var_ping1
-  - set_fact:
-      down: "{{ ansible_play_hosts_all|difference(ansible_play_hosts) }}"
+ 
+  - ping:
+    register: ping_out
+    # one can include any kind of timeout or other stall related config here
+
   - debug:
-      var: down
+      msg: |
+        {% for k in hostvars.keys() %}
+        {{ k }}: {{ hostvars[k].ping_out.unreachable|default(False) }}
+        {% endfor %}
