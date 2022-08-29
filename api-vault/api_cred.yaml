@@ -5,6 +5,8 @@
     tower_pass: password
     tower_host: ansibletower.knowcloud.in
     tower_job: "{{ 'api-test' | urlencode }}"
+  vars_files:
+    secret.yml
   tasks:
   - name: Host Ping Check
     failed_when: false
@@ -17,8 +19,8 @@
       method: POST
       validate_certs: no
       return_content: yes
-      user: "{{ tower_user }}"
-      password: "{{ tower_pass }}"
+      user: "{{ tower_username }}"
+      password: "{{ tower_password }}"
       force_basic_auth: yes
       status_code: 201
 
