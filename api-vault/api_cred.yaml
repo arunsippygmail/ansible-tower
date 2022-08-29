@@ -4,7 +4,7 @@
     tower_user: admin
     tower_pass: password
     tower_host: ansibletower.knowcloud.in
-    tower_job: "{{ 'api-test' | urlencode }}"
+    tower_job: "{{ 'pintest' | urlencode }}"
   vars_files:
     secret.yml
   tasks:
