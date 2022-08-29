@@ -1,0 +1,25 @@
+- hosts: localhost
+  gather_facts: no
+  vars:
+    tower_user: admin
+    tower_pass: password
+    tower_host: ansibletower.knowcloud.in
+    tower_job: "{{ 'api-test' | urlencode }}"
+  tasks:
+  - name: Host Ping Check
+    failed_when: false
+    ping:
+    register: var_ping
+
+  - name: launch a tower_job
+    uri:
+      url: https://{{ tower_host }}/api/v2/job_templates/{{ tower_job }}/launch/
+      method: POST
+      validate_certs: no
+      return_content: yes
+      user: "{{ tower_user }}"
+      password: "{{ tower_pass }}"
+      force_basic_auth: yes
+      status_code: 201
+
+    
