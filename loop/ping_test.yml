@@ -18,4 +18,4 @@
   - name: loop the list
     debug:
       msg: "{{ item }}"
-    loop: srv_list
+    loop: "{{srv_list}}"
