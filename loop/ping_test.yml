@@ -7,45 +7,14 @@
     ping:
     register: var_ping
 
-  - name: display ping results
+  - name: create a list using the survey variable
+    set_fact:
+      srv_list: {{ service_list.split('\n') }}
+
+  - name: Print the list type
+    debug: msg="{{ srv_list|type_debug }}"
+
+
+  - name: loop the list
     debug:
-      var: var_ping
-
-  - debug:
-      var: ansible_play_hosts_all
-  - debug:
-      var: ansible_play_hosts
-  - set_fact:
-      down: "{{ ansible_play_hosts_all|difference(ansible_play_hosts) }}"
-  - debug:
-      var: down
-  
-
-  - ping:
-    register: ping_out
-    # one can include any kind of timeout or other stall related config here
-
-  - name: print_out
-    debug:
-      var: ping_out
-
-  - debug:
-      msg: |
-        {% for k in hostvars.keys() %}
-        {{ k }}: {{ hostvars[k].ping_out.unreachable|default(False) }}
-        {% endfor %}
-
-- hosts: localhost
-  gather_facts: false
-  tasks:
-  - name: print the managed3 print_out variable
-    debug:
-      var: hostvars['managed3'].ping_out.unreachable
-
-  - name: print the managed3 print_out variable
-    debug:
-      var: hostvars['managed3'].ping_out
-
-  - name: print the managed3 print_out variable
-    debug:
-      var: hostvars['managed3']
+      msg: {{ item }}
