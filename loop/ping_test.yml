@@ -1,5 +1,5 @@
 - hosts: managed1
-  gather_facts: no
+  gather_facts: yes
 
   tasks:
   - name: Host Ping Check
