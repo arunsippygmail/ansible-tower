@@ -32,5 +32,20 @@
   - debug:
       msg: |
         {% for k in hostvars.keys() %}
-        {{ k }}: {{ hostvars[k].var_ping.unreachable|default(False) }}
+        {{ k }}: {{ hostvars[k].ping_out.unreachable|default(False) }}
         {% endfor %}
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: print the managed3 print_out variable
+    debug:
+      var: hostvars['managed3'].ping_out.unreachable
+
+  - name: print the managed3 print_out variable
+    debug:
+      var: hostvars['managed3'].ping_out
+
+  - name: print the managed3 print_out variable
+    debug:
+      var: hostvars['managed3']
