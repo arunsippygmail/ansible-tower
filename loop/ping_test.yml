@@ -9,7 +9,7 @@
 
   - name: create a list using the survey variable
     set_fact:
-      srv_list: {{ service_list.split('\n') }}
+      srv_list: "{{ service_list.split('\n') }}"
 
   - name: Print the list type
     debug: msg="{{ srv_list|type_debug }}"
@@ -17,4 +17,4 @@
 
   - name: loop the list
     debug:
-      msg: {{ item }}
+      msg: "{{ item }}"
