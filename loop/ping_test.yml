@@ -27,7 +27,7 @@
 
   - name: search the string matching hostname
     set_fact:
-      host_matched_str: "{{ srv_list|select('match',inventory_hostname | string)|first|list }}"
+      host_matched_str: "{{ srv_list|select('match',inventory_hostname | string)|list }}"
 
   - name: print the matched string
     debug:
@@ -44,5 +44,5 @@
 
   - name: delete the hostname from the list
     set_fact: 
-      srv_chk_list: "{{ srv_chk_list | reject('search',inventory_hostname|string) | list }}"
+      srv_chk_list: "{{ my_list_one | reject('search',inventory_hostname|string) | list }}"
 
