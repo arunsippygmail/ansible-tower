@@ -24,4 +24,8 @@
 
   - name: search the string matching hostname
     set_fact:
-      test_name: "{{ srv_list|select('regex', inventory_hostname) }}"
+      host_matched_str: "{{ srv_list|select('regex', inventory_hostname) }}"
+
+  - name: print the matched string
+    debug:
+      var: host_matched_str
