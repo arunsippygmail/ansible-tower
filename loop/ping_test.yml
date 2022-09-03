@@ -19,3 +19,9 @@
     debug:
       msg: "{{ item }}"
     loop: "{{srv_list}}"
+    loop_control:
+       extended: yes
+
+  - name: search the string matching hostname
+    set_fact:
+      test_name: "{{ srv_list|select('regex', inventory_hostname) }}"
