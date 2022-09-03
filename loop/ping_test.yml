@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: managed1
   gather_facts: no
 
   tasks:
@@ -18,3 +18,4 @@
   - name: loop the list
     debug:
       msg: "{{ item }}"
+    loop: srv_list
