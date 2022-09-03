@@ -23,12 +23,22 @@
        extended: yes
 
   - name: debug print ansible_hostname
-    debug: msg="{{ inventory_hostname }}"
+    debug: msg="{{ ansible_hostname }}"
 
   - name: search the string matching hostname
     set_fact:
-      host_matched_str: "{{ srv_list|select('match',inventory_hostname | string)|list }}"
+      host_matched_str: "{{ srv_list|select('match',inventory_hostname | string) }}"
 
   - name: print the matched string
     debug:
       var: host_matched_str
+
+  - name: create variable with the service list
+    set_fact:
+      srv_chk_list: "{{ host_matched_str.split(',') }}"
+    
+
+  - name: print srv_chk_list
+    debug:
+      msg: "{{srv_chk_list}}"
+
