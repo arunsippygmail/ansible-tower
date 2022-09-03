@@ -32,5 +32,5 @@
   - debug:
       msg: |
         {% for k in hostvars.keys() %}
-        {{ k }}: {{ hostvars[k].ping_out.unreachable|default(True) }}
+        {{ k }}: {{ hostvars[k].unreachable|default(False) }}
         {% endfor %}
