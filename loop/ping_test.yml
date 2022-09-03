@@ -22,6 +22,9 @@
     loop_control:
        extended: yes
 
+  - name: debug print ansible_hostname
+    debug: msg="{{ ansible_hostname }}"
+
   - name: search the string matching hostname
     set_fact:
       host_matched_str: "{{ srv_list|select('match', '^' + ansible_hostname | string)|list }}"
