@@ -35,7 +35,7 @@
 
   - name: create variable with the service list
     set_fact:
-      srv_chk_list: "{{ host_matched_str.split(',') }}"
+      srv_chk_list: "{{ (host_matched_str[0]|string).split(',') }}"
     
 
   - name: print srv_chk_list
