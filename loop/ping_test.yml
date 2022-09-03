@@ -46,3 +46,8 @@
     set_fact: 
       srv_chk_list: "{{ srv_chk_list | reject('search',inventory_hostname|string) | list }}"
 
+  - name: print srv_chk_list
+    debug:
+      msg: "{{srv_chk_list}}"
+
+
