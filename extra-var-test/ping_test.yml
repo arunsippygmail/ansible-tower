@@ -1,0 +1,53 @@
+- hosts: managed1
+  gather_facts: yes
+
+  tasks:
+  - name: Host Ping Check
+    failed_when: false
+    ping:
+    register: var_ping
+
+  - name: create a list using the survey variable
+    set_fact:
+      srv_list: "{{ service_list.split('\n') }}"
+
+  - name: Print the list type
+    debug: msg="{{ srv_list|type_debug }}"
+
+
+  - name: loop the list
+    debug:
+      msg: "{{ item }}"
+    loop: "{{srv_list}}"
+    loop_control:
+       extended: yes
+
+  - name: debug print ansible_hostname
+    debug: msg="{{ ansible_hostname }}"
+
+  - name: search the string matching hostname
+    set_fact:
+      host_matched_str: "{{ srv_list|select('match',inventory_hostname | string)|list }}"
+
+  - name: print the matched string
+    debug:
+      var: host_matched_str
+
+  - name: create variable with the service list
+    set_fact:
+      srv_chk_list: "{{ (host_matched_str[0]|string).split(',') }}"
+    
+
+  - name: print srv_chk_list
+    debug:
+      msg: "{{srv_chk_list}}"
+
+  - name: delete the hostname from the list
+    set_fact: 
+      srv_chk_list: "{{ srv_chk_list | reject('search',inventory_hostname|string) | list }}"
+
+  - name: print srv_chk_list
+    debug:
+      msg: "{{srv_chk_list}}"
+
+
