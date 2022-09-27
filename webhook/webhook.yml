@@ -20,28 +20,5 @@
 
         }
 
-  - name: Upload using Curl
-    shell: "curl -k -s '{{ webhook_url }}' -w \"HTTP_RC:%{http_code}\" -H \"accept: application/zip\"  -o {{ file_name }}"
-    args:
-        warn: false
-    register: response
-      
-    
-
-  - name: Call upload endpoints
-    uri:
-      url: "https://kyndryl.webhook.office.com/webhookb2/9d74ff56-fab0-4087-a164-69623ca7af2f@f260df36-bc43-424c-8f44-c85226657b01/IncomingWebhook/13ad2dd6a27e4372a0fd37a85618acaf/57f58fc4-ba8c-40c2-bc82-df255cff53da"
-      method: "POST"
-      body_format: "form-multipart"
-      src: "{{file_name}}"
-      body:
-        backup:
-          filename: "{{file_name}}"
-          mime_type: application/zip
-        anotherFormParam: "api_key"
-      force_basic_auth: yes
-      return_content: yes
-      headers:
-        Content-Type: multipart/form-data
-      validate_certs: false
-    register: upload_result
+  
+  
