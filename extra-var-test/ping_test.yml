@@ -42,6 +42,10 @@
     debug:
       msg: "{{srv_chk_list}}"
 
+  - name: Display the region
+    debug:
+      msg: "{{srv_chk_list[1]}}"
+
   - name: delete the hostname from the list
     set_fact: 
       srv_chk_list: "{{ srv_chk_list | reject('search',inventory_hostname|string) | list }}"
