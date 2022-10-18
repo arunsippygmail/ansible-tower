@@ -16,7 +16,7 @@
       body: |
         {
           "title": "Ansible notification message",
-          "text": "play: {{ playbook_name }}, target: {{ target }}, comment: {{ comment }}"
+          "text": "play: {{ playbook_name }}, target: {{ inventory_hostname }}, comment: {{ tower_job_id }}"
 
         }
 
