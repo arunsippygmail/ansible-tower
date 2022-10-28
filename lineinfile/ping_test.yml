@@ -11,10 +11,11 @@
   - name: Comment the line CT_CMSLIST
     lineinfile: 
       path: /home/arunsippy/lu.ini
-      search_string: 'CT_CMSLIST'
-      line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
       backup: yes
-      state: present
+      search_string: CT_CMSLIST
+      line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
+      
+      
      
 
   
