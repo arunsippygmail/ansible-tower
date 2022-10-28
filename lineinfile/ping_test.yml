@@ -2,12 +2,12 @@
   gather_facts: yes
   
   handlers:
-      - name: chk_changed_file
-        become: yes
-        become_user: root
-        shell:|
-         grep CT_CMSLIST /home/arunsippy/lu.ini
-
+  - name: chk_changed_file
+    become: yes
+    become_user: root
+    shell: |
+      grep CT_CMSLIST /home/arunsippy/lu.ini
+      cat /home/arunsippy/lu.ini
   tasks:
   - name: Host Ping Check
     failed_when: false
