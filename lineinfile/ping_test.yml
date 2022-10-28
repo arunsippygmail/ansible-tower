@@ -37,9 +37,9 @@
     debug:
       var: res_lu_update
 
-  - name: Comment the line CT_CMSLIST
+  - name: Comment the line CT_CMSLIST in lz
     lineinfile: 
-      path: /home/arunsippy/lu.ini
+      path: /home/arunsippy/lz.ini
       backup: yes
       regexp: CT_CMSLIST
       line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
