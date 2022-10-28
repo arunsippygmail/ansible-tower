@@ -1,5 +1,12 @@
 - hosts: managed1
   gather_facts: yes
+  
+  handlers:
+      - name: chk_changed_file
+        become: yes
+        become_user: root
+        shell:|
+         grep CT_CMSLIST /home/arunsippy/lu.ini
 
   tasks:
   - name: Host Ping Check
@@ -12,8 +19,9 @@
     lineinfile: 
       path: /home/arunsippy/lu.ini
       backup: yes
-      search_string: CT_CMSLIST
+      regexp: CT_CMSLIST
       line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
+    notify: chk_changed_file
       
       
      
