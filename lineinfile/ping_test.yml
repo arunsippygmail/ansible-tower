@@ -1,0 +1,23 @@
+- hosts: managed1
+  gather_facts: yes
+
+  tasks:
+  - name: Host Ping Check
+    failed_when: false
+    ping:
+    register: var_ping
+
+  - name: create a list using the survey variable
+    set_fact:
+      srv_list: "{{ var1.split('\n') }}"
+
+  - name: Comment the line CT_CMSLIST
+    lineinfile: 
+      path: /home/arunsippy/lu.ini
+      search_string: 'CT_CMSLIST'
+      line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
+      backup: yes
+      state: present
+     
+
+  
