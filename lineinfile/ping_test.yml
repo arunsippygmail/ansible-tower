@@ -9,7 +9,7 @@
       grep CT_CMSLIST /home/arunsippy/lu.ini
       cat /home/arunsippy/lu.ini
 
-  - name: chk_changed_file_lu
+  - name: chk_changed_file_lz
     become: yes
     become_user: root
     shell: |
