@@ -58,6 +58,10 @@
       line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
     #notify: chk_changed_file_ou
     register: res_ou_update
+
+  - name: chk status of the res_ou_update
+    debug:
+      var: res_ou_update
    
       
       
