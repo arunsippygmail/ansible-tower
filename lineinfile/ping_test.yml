@@ -49,6 +49,15 @@
   - name: chk status of the res_lu_update
     debug:
       var: res_lz_update
+
+  - name: Comment the line CT_CMSLIST in ou
+    lineinfile: 
+      path: /home/arunsippy/ou.ini
+      backup: yes
+      regexp: CT_CMSLIST
+      line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
+    notify: chk_changed_file_ou
+    register: res_ou_update
    
       
       
