@@ -2,12 +2,21 @@
   gather_facts: yes
   
   handlers:
-  - name: chk_changed_file
+  - name: chk_changed_file_lu
     become: yes
     become_user: root
     shell: |
       grep CT_CMSLIST /home/arunsippy/lu.ini
       cat /home/arunsippy/lu.ini
+
+  - name: chk_changed_file_lu
+    become: yes
+    become_user: root
+    shell: |
+      grep CT_CMSLIST /home/arunsippy/lz.ini
+      cat /home/arunsippy/lz.ini
+
+
   tasks:
   - name: Host Ping Check
     failed_when: false
@@ -21,7 +30,7 @@
       backup: yes
       regexp: CT_CMSLIST
       line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
-    notify: chk_changed_file
+    notify: chk_changed_file_lu
     register: res_lu_update
 
   - name: chk status of the res_lu_update
@@ -34,7 +43,7 @@
       backup: yes
       regexp: CT_CMSLIST
       line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
-    notify: chk_changed_file
+    notify: chk_changed_file_lz
     register: res_lz_update
 
   - name: chk status of the res_lu_update
