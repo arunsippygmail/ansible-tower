@@ -7,9 +7,6 @@
     ping:
     register: var_ping
 
-  - name: create a list using the survey variable
-    set_fact:
-      srv_list: "{{ var1.split('\n') }}"
 
   - name: Comment the line CT_CMSLIST
     lineinfile: 
