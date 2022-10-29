@@ -29,8 +29,10 @@
         line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
       register: res_lu_update
       notify: chk_changed_file_lu
+
+    - meta: flush_handlers
       
-    - name: chk status of the res_lu_update
+    - name: chk status of the res_lu_handler
       debug:
         var: res_lu_handler
 
