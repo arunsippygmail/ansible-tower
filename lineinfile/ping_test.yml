@@ -6,7 +6,7 @@
     become: yes
     become_user: root
     shell: |
-      grep1 CT_CMSLIST /home/arunsippy/lu.ini
+      grep CT_CMSLIST /home/arunsippy/lu.ini
       cat /home/arunsippy/lu1.ini
       touch1 handlerchk.txt
     register: res_lu_handler
