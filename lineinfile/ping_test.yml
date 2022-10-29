@@ -8,7 +8,7 @@
     shell: |
       grep CT_CMSLIST /home/arunsippy/lu.ini
       cat /home/arunsippy/lu1.ini
-      touch1 handlerchk.txt
+      touch handlerchk.txt
     register: res_lu_handler
 
   
