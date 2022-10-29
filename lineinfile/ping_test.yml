@@ -8,13 +8,9 @@
     shell: |
       grep CT_CMSLIST /home/arunsippy/lu.ini
       cat /home/arunsippy/lu.ini
+    register: res_lu_handler
 
-  - name: chk_changed_file_lz
-    become: yes
-    become_user: root
-    shell: |
-      grep CT_CMSLIST /home/arunsippy/lz.ini
-      cat /home/arunsippy/lz.ini
+  
 
 
   tasks:
@@ -23,45 +19,34 @@
     ping:
     register: var_ping
 
+  - name: To chk the handler error gets reported in rescue block
+    block: 
+    - name: Comment the line CT_CMSLIST
+      lineinfile: 
+        path: /home/arunsippy/lu.ini
+        backup: yes
+        regexp: CT_CMSLIST
+        line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
+      register: res_lu_update
+      notify: chk_changed_file_lu
+      
+    - name: chk status of the res_lu_update
+      debug:
+        var: res_lu_handler
 
-  - name: Comment the line CT_CMSLIST
-    lineinfile: 
-      path: /home/arunsippy/lu.ini
-      backup: yes
-      regexp: CT_CMSLIST
-      line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
-    #notify: chk_changed_file_lu
-    register: res_lu_update
+    rescue: Display the failed task name
+    - name: Display the failed task
+      debug:
+        var: ansible_failed_task
+       
+    - name: Create Failed report when task failed
+      copy:
+        content: "{{inventory_hostname}},{{ansible_failed_task.name|default('Check for Failed Task',True)}},'Installation Failed'\n"
+        dest: "/home/arunsippy/rtemsreport.txt"
 
-  - name: chk status of the res_lu_update
-    debug:
-      var: res_lu_update
 
-  - name: Comment the line CT_CMSLIST in lz
-    lineinfile: 
-      path: /home/arunsippy/lz.ini
-      backup: yes
-      regexp: CT_CMSLIST
-      line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
-    #notify: chk_changed_file_lz
-    register: res_lz_update
 
-  - name: chk status of the res_lu_update
-    debug:
-      var: res_lz_update
-
-  - name: Comment the line CT_CMSLIST in ou
-    lineinfile: 
-      path: /home/arunsippy/ou.ini
-      backup: yes
-      regexp: CT_CMSLIST
-      line: CT_CMSLIST=IP.SPIPE:#10.174.225.54;IP.SPIPE:#10.174.225.47
-    #notify: chk_changed_file_ou
-    register: res_ou_update
-
-  - name: chk status of the res_ou_update
-    debug:
-      var: res_ou_update
+  
    
       
       
