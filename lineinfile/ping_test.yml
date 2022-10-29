@@ -34,7 +34,8 @@
       debug:
         var: res_lu_handler
 
-    rescue: Display the failed task name
+    rescue: 
+
     - name: Display the failed task
       debug:
         var: ansible_failed_task
